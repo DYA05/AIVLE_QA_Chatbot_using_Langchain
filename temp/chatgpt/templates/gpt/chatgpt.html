@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ChatGPT 대화</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">ChatGPT 대화</h1>
+        <form id="chat-form" class="mb-3" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="question">ChatGPT에게 질문하기</label>
+                <textarea class="form-control" id="question" name="question" rows="3"></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">질문</button>
+            </div>
+        </form>
+
+        <div class="card">
+            <div class="card-header">대화 기록</div>
+            <div class="card-body" id="chat-history">
+                {% if chat_history %}
+                    {% for chat in chat_history %}
+                        <div class="mb-3">
+                            <strong class="question">질문:</strong> {{ chat.question }}<br>
+                            <strong class="answer">응답:</strong> {{ chat.response }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>대화 기록이 없습니다.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="text-center mt-3">
+            <a href="{% url 'chatgpt:clear_chat' %}" class="btn btn-danger">대화 기록 삭제</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#chat-form').submit(function(event) {
+                event.preventDefault();
+                var question = $('#question').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '',
+                    data: {
+                        'question': question,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        $('#question').val('');
+                        var chatHistory = $('#chat-history');
+                        chatHistory.append('<div class="mb-3"><strong>질문:</strong> ' + response.question + '<br><strong>응답:</strong> ' + response.answer + '</div>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+@font-face {
+    font-family:'bagel';
+    src: url('BagelFat-Fat.otf') format('opentype');
+}
+
+head, body {
+
+        font-family: "bagel", sans-serif;
+        font-weight: 100;
+        font-style: normal;
+        letter-spacing: auto;
+        font-size: 14px;
+      
+}
+
+
+.containerCon{
+    padding-top:50px;
+    margin-bottom: 20px;
+}
+
+.titleBox{
+    height: 100px;
+    display : flex;
+    justify-content:center;
+    align-items:center; 
+    flex-direction : column;
+    
+
+}
+
+.title{
+    text-align : center;
+}
+
+
+.admin{
+    position: absolute;
+    right :40px;
+    top : 20px;
+}
+
+body {
+    background-image:url('./cat_paw.avif'); 
+    background-repeat: repeat; /* 이미지 반복 금지 */
+    font-family : 1
+}/* 약간 더 밝은 배경색 */
+
+
+.mainContent{
+    width: 80%;
+}
+
+.contentBoxBox{
+    display : flex;
+    justify-content : center;
+    height: calc(100vh - 2px);
+}
+
+.sideBar{
+   background-color : red;
+   width: 20%;
+   margin-right : 12px;
+   border-radius : 5px;
+   height: calc(100vh - 2px);
+   padding : 10px;
+}
+
+.mainBox{
+    width: 100%;
+    height: 100%;
+    background-color:white;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    z-index: 0;
+
+
+}
+
+
+.userList{
+    width: 100%;
+    height: 0 auto;
+
+    background-color:black;
+    color : white;
+    text-align: center;
+}
+
+
+h1 {
+    font-family: "bagel", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 2.0rem;
+    color: #212529; /* 약간 더 진한 글자색 */
+}
+
+.admin{
+    position: absolute;
+    right :40px;
+    top : 20px;
+}
+
+.card {
+    margin: 0px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border: 5px solid #dbeef0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: calc(100vh - 40px); /* 화면 높이에서 상단 마진을 제외한 값으로 설정 */
+    max-height: calc(100vh - 40px); /* 최대 높이를 화면 높이에서 상단 마진을 제외한 값으로 설정 */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    background-color: #38B8B2; /* 더 세련된 회색 톤 */
+    /* c1eaeeea */
+    color: #dbeef0;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #38B8B2;
+    border-color: #38B8B2;
+}
+
+.btn-danger {
+    background-color: red;
+    border-color: red;
+}
+
+.btn:hover {
+    color: white;
+    background-color: #128293;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #212529;
+}
+
+#chat-history {
+    max-height: calc(100vh - 120px); /* card header, padding 등을 고려하여 조정 */
+    overflow-y: auto;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.bigContent{
+            display:flex;
+            justify-content : center;
+}
+
+
+/* 질문과 응답을 각각 왼쪽과 오른쪽에 배치 */
+.mb-3 {
+    color: #38B8B2; /* 질문에 어울리는 파란색 톤 */
+    font-weight: bold;
+    align-self: flex-end;
+    background-color: #c1eaee; /* 연한 회색 배경 */
+    border: 1px solid #c1eaea; /* 약간의 테두리 추가 */
+    border-radius: 5px; /* 둥근 테두리 */
+    padding: 10px; /* 패딩 추가 */
+    margin: 5px 0;
+    /* letter-spacing: 0.07rem; */
+}
+
+
+
+.mb-4 {
+    color: #dbeef0; /* 응답에 어울리는 녹색 톤 */
+    font-weight: bold;
+    align-self: flex-start;
+    background-color: #38B8B2;
+    width: auto;
+    max-width: 50%;
+    text-align: left;
+    border: 1px solid #38B8B2; /* 약간의 테두리 추가 */
+    border-radius: 5px; /* 둥근 테두리 */
+    padding: 10px; /* 패딩 추가 */
+    margin: 5px 0;
+
+}
+
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    color:#38B8B2;
+  }
+
+.conversation {
+    display: flex;
+    flex-direction: column;
+}
+
+.mt-5 {
+    margin: 0px;
+    /* margin-top: 10px !important;
+    margin-bottom:10px; */
+    padding:2px;
+    width:100%; 
+}
+
+div.mt-3 {
+    display: flex;
+    justify-content: center;
+
+}
+
+/* #img {
+    background-image: url('./paw.jpg');
+    background-position: center;
+    background-size: 10px 10px ;
+    border-radius: 5px;
+} */

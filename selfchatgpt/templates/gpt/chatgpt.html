@@ -1,0 +1,388 @@
+
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="{% static 'images/favicon_catr.ico' %}" sizes="36x36">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Hahmlet:wght@100..900&family=Jua&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    {% comment %} <link rel="icon" type="image/png" sizes="16x16" href="{% static 'selfchatgpt/favicon-16x16.png' %}"> {% endcomment %}
+    <title>ChatGPT 요청</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'selfchatgpt/style.css' %}">
+    
+    {% endblock %}
+    <style>
+        @font-face {
+            font-family:'bagel';
+            src: url('{% static 'selfchatgpt/BagelFat-Fat.otf' %}') format('opentype');
+            
+        }
+        body {
+            font-family: "bagel", sans-serif;
+            font-weight: 100;
+            font-style: normal;
+            letter-spacing: auto;
+            font-size: 14px;
+            background-color : #EAFFFD;
+            width : 100vw;
+        }
+        
+        .containerCon {
+            padding-top: 50px;
+            width: 100vw;
+
+            margin-bottom: 20px;
+        }
+        .titleBox {
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top : 40px;
+            margin-bottom : 40px;
+        }
+        .title {
+            text-align: center;
+            margin-top:6px;
+
+        }
+        .admin {
+            position: absolute;
+            right: 40px;
+            top: 20px;
+        }
+        body {
+            background-image: url('{% static 'selfchatgpt/cat_paw.avif' %}');
+            background-repeat: repeat;
+            height: 100vh
+        }
+        .mainContent {
+            width: 400px;
+        }
+        .contentBoxBox {
+            display: flex;
+            justify-content: center;
+            height: 100%;
+        }
+        .sideBar {
+            background-color: rgba(256, 256, 256, 0);
+            width: auto;
+            margin-right: 12px;
+            margin-left: 12px;
+            border-radius: 5px;
+            height: 100%;
+            min-height: 400px;
+            padding: 10px 10px 10px 1px;
+            flex-glow : 1;
+            display: flex;
+            justify-content: right;
+            border: solid 1px black;
+            
+        }
+        .mainBox {
+            width: 200px;
+            height: 100%;
+            background-color: none;
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 0;
+        }
+        .userList {
+            width: 100%;
+            height: 40px;
+            background-color: #219C90;
+            color: white;
+            text-align: center;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            border-radius : 10px;
+            margin-left : 6px;
+        }
+        h1 {
+            font-family: "bagel", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            font-size: 2.0rem;
+            color: #212529;
+        }
+        .admin {
+            position: absolute;
+            right: 40px;
+            top: 20px;
+        }
+        .card {
+            margin: 0px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border: 5px solid #dbeef0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 120%;
+            max-height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
+        }
+        .card-header {
+            background-color: #38B8B2;
+            color: #dbeef0;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #38B8B2;
+            border-color: #38B8B2;
+        }
+        .btn-danger {
+            background-color: red;
+            border-color: red;
+        }
+        .btn:hover {
+            color: white;
+            background-color: #128293;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #212529;
+        }
+        #chat-history {
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            background-color: #ffffff;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 15px;
+            flex-grow: 1;
+        }
+        .bigContent {
+            display: flex;
+            justify-content: center;
+        }
+        .mb-3 {
+            color: #38B8B2;
+            font-weight: bold;
+            align-self: flex-end;
+            background-color: #c1eaee;
+            border: 1px solid #c1eaea;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        .mb-4 {
+            color: #dbeef0;
+            font-weight: bold;
+            align-self: flex-start;
+            background-color: #38B8B2;
+            width: auto;
+            max-width: 50%;
+            text-align: left;
+            border: 1px solid #38B8B2;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+            color: #38B8B2;
+        }
+        .conversation {
+            display: flex;
+            flex-direction: column;
+            heigh: 100px;
+        }
+        .mt-5 {
+            margin: 0px;
+            padding: 2px;
+            width: 100%;
+        }
+        div.mt-3 {
+            display: flex;
+            justify-content: center;
+        }
+        .topic_list {
+            background-color: white;
+            width: 170px;
+        }
+        .history_title {
+            padding: 10px;
+            margin: 6px;
+            background-color: #95D2B3;
+            cursor: pointer;
+            width: 170px;
+            border-radius: 10px;
+        }
+        .redBtn{
+            margin-bottom : 20px;
+        }
+        .dancingCat1{
+            position : absolute;
+            left : 70px;
+            top: 300px;
+            width: 400px;
+            border-radius:10px;
+        }
+        
+         .dancingCat2{
+            position : absolute;
+            right : 70px;
+            top: 300px;
+            width: 400px;
+            border-radius:10px;
+        }
+
+        .editDancingCat1{
+            
+            width: 300px;
+            border-radius:10px;
+            margin-left : 20px;
+        }
+
+        .editDancingCat2{
+            
+            width: 300px;
+            border-radius:10px;
+            margin-left : 20px;
+            margin-right : 20px;
+        }
+
+        .anker{
+            min-width: 400px;
+        }
+
+       
+    </style>
+
+   
+
+</head>
+<body class="bodyCon">
+    {% load static %}
+ {% comment %} <img class = "editDancingCat" src="{% static 'images/dancing_cat.gif' %}" alt="춤추는 고양이"/> {% endcomment %}
+        
+
+    <a href="http://52.14.38.213/admin/" class="admin">
+        
+
+        <button class="btn btn-warning">
+            관리자 페이지
+        </button>
+    </a>
+    <div class=" containerCon">
+        <div class="titleBox anker">
+            <h1 class="title">Ailve냥이랑 대화!</h1>
+            <h2 class="title" id="name-input">Welcome, {{ name }}!</h2>
+        </div>
+        <div class="contentBoxBox">
+            <div>
+                <img class = "editDancingCat1" src="{% static 'images/dancing_cat.gif' %}" alt="춤추는 고양이"/>
+            </div>
+            <div class="sideBar">
+                <div class="mainBox">
+                    <div class="userList">
+                        {{ name }}님의 지난 대화
+                    </div>
+                    <div class="topic_list">
+                        {% if topics %}
+                            {% for topic in topics %}
+                                {% if topic.title != "Null" %}
+                                    <div class="history_title" data-title="{{ topic.title }}">
+                                        {{ topic.title }} <br>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="mainContent">
+                <form id="chat-form" class="mb-3 anker" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="question">KT AIVLE에게 질문하기</label>
+                        <textarea class="form-control" id="question" name="question" rows="3"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">질문</button>
+                    </div>
+                </form>
+                <div class="card">
+                    <div class="card-header">대화 기록</div>
+                    <div class="card-body" id="chat-history">
+                        {% if chat_history %}
+                            {% for chat in chat_history %}
+                                <div class="conversation">
+                                    <div class="mb-3">
+                                        {{ chat.question }}<br>
+                                    </div>
+                                    <div class="mb-4">
+                                        {{ chat.response }}<br>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p>대화 기록이 없습니다.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="text-center mt-3 redBtn">
+                    <a href="{% url 'selfchatgpt:clear_chat' %}?name={{ name }}" class="btn btn-danger">대화 기록 삭제</a>
+                </div>
+            </div>
+            <div>
+            <img class = "editDancingCat2" src="{% static 'images/dancing_cat.gif' %}" alt="춤추는 고양이"/>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 질문 제출 시 AJAX 요청
+            $('#chat-form').submit(function(event) {
+                event.preventDefault();
+                var question = $('#question').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '',
+                    data: {
+                        'question': question,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        $('#question').val('');
+                        var chatHistory = $('#chat-history');
+                        chatHistory.append('<div class="conversation">' + '<div class="mb-3">' + response.question + '</div>' + '<div class="mb-4">' + response.answer + '</div>' + '</div>');
+                    }
+                });
+            });
+    
+            // 제목 클릭 시 AJAX 요청
+            $('.history_title').click(function() {
+                var title = $(this).data('title');
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "selfchatgpt:load_chat" %}',
+                    data: {
+                        'title': title,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            location.reload();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

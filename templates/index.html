@@ -1,0 +1,171 @@
+<!doctype html>
+{% load static %}
+<html>
+<head>        
+    <title>Aivle에게 보라냥!!</title>
+    <meta charset="utf-8">
+    {% comment %} 폰트 {% endcomment %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Hahmlet:wght@100..900&family=Jua&family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+     {% comment %} 파비콘 {% endcomment %}
+    <link rel="icon" type="image/png" sizes="16x16" href="./selfchatgpt/favicon-16x16.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'base.css' %}" />   
+    {% load static %} 
+    <link rel="icon" href="{% static 'images/android-icon-36x36.png' %}" type="image/x-icon">
+
+    <style>
+        @font-face {
+            font-family:'bagel';
+            src: url('./font/BagelFat-Fat.otf') format('opentype');
+        }
+     
+
+        .background{
+            
+            background-color : #EAFFFD; 
+            background-repeat : no-repeat;
+            background-size : container;
+            background-position: 50% -40%;
+            margin-bottom:4px;
+            padding-top:40px;
+            overflow: hidden;
+        
+        }
+
+        .containerBox{
+            opacity: 1;
+            display: flex;
+            justify-content: center;
+            flex-direction : column;
+            align-items: center;
+            width : 40%;
+            height : 30%;
+            margin-bottom: 28px;
+        }
+
+        
+        
+
+        .inputWidth{
+            width : 400px;
+            background-color : rgba(256 , 256 , 256 , 256 .3);
+
+            border : solid white 1px;
+
+            border-radius : 10px
+            
+        }
+
+        ::placeholder{
+            margin-left: 100px
+        }
+
+        .test{
+            width :200px;
+            height :100px;
+        }
+
+        .font{
+            font-family:"bagel" ;
+            font-weight :bold;
+        }
+
+        .admin{
+            position: absolute;
+            right :40px;
+            top : 20px;
+        }
+        
+        @keyframes slideRight {
+            from {
+              transform: translateX(100%);
+            }
+            to {
+              transform: translateX(-400%);
+            }
+          }
+
+        .catBox{
+            position: absolute;
+            top: 200px;
+            right: -30px; 
+            animation: slideRight 4s cubic-bezier(.27,1.68,.76,-0.69)  infinite;           
+        }
+
+        .sns-button{
+            position: fixed;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            background-size: cover;
+            background-position: center;
+            border-radius: 30px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .youtube {
+        bottom: 80px; /* 첫 번째 버튼의 위치 */
+        background-image: url('../templates/images/youtube.png');
+        }   
+
+        .instagram {
+        bottom: 140px; /* 두 번째 버튼의 위치 */
+        background-image: url('../templates/images/instagram.png');
+        }   
+
+        .cafe {
+        bottom: 200px; /* 세 번째 버튼의 위치 */
+        background-image: url('../templates/images/naver-cafe.png');
+        }
+    </style>
+</head>
+<body class = "background " >
+    <a href= "http://52.14.38.213/admin/" class="admin">
+        <button class ="btn btn-warning" >
+            관리자 페이지
+        </button>
+     </a>
+     <div class = "catBox">
+        <img src="{% static 'images/cat2.png' %}" alt="Cat Image"/>
+     </div>
+    <div class="container containerBox">
+
+        
+            <div class=" d-flex justify-content-center mb-5">
+               <h2 class="my-3 font">Aivle에게 물보라냥~!</h2>
+            </div>
+
+            <div class=" d-flex">
+                <input type="text" id="name-input" class="form-control inputWidth" placeholder="이름이 뭐다냥?" >
+                <button type="button" id="submit-button" class="btn btn-success">Submit</button>
+                <a href="https://www.youtube.com/playlist?list=PL_WCuvyChN3giYr6Xa2gWMOvRjDUrfb0a"  class="sns-button youtube" target='_blank'></a>
+                <a href="https://www.instagram.com/aivlestory/" class="sns-button instagram" target = '_blank'></a>
+                <a href="https://cafe.naver.com/aivleschool" class="sns-button cafe" target = '_blank'></a>
+                <script>
+                    document.getElementById('submit-button').addEventListener('click', function() {
+                        var name = document.getElementById('name-input').value;
+                        if (name) {
+                            window.location.href = '/selfchatgpt/?name=' + encodeURIComponent(name);
+                        } else {
+                            alert('Please enter your name');
+                        }
+                    });
+                </script>
+            </div>
+        
+    </div>
+    
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

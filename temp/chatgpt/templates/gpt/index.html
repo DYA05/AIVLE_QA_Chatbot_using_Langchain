@@ -1,0 +1,34 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ChatGPT 요청</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'gpt/style.css' %}">
+    {% endblock %}
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">ChatGPT 요청</h1>
+        <form action="chat" method="post" enctype="application/x-www-form-urlencoded">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="question">ChatGPT에게 요청하기</label>
+                <textarea class="form-control" id="question" name="question" rows="5"></textarea>
+            </div>
+            <div class="text-center">
+                <button id="text-button" type="submit" class="btn btn-primary">질문</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
